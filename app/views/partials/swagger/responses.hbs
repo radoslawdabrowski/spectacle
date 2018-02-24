@@ -34,12 +34,6 @@
               {{md description}}
             </div>
           </div>
-          {{#if schema.type}}
-            <div class="prop-row prop-inner">
-              <div class="prop-name">type</div>
-              <div class="prop-value">{{>json-schema/datatype schema}}</div>
-            </div>
-          {{/if}}
         {{/each}}
       </section>
     </div>
@@ -58,31 +52,6 @@
           <h5>Response Example <span>({{@key}} {{httpResponseCode @key}})</span></h5>
           {{>swagger/print-example .}}
         </section>
-        {{/if}}
-        {{#if headers}}
-          <section>
-            <h5>Response Headers <span>({{@key}} {{httpResponseCode @key}})</span></h5>
-            <section class="swagger-response-headers">
-              <table class="table">
-                <thead>
-                <tr>
-                  <th class="swagger-response-header-name"></th>
-                  <th class="swagger-response-header-description"></th>
-                  <th class="swagger-response-header-data-type"></th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each headers}}
-                  {{#if $ref}}
-                    {{> swagger/responseHeaderRow header=(json-schema-resolve-ref $ref) name=@key}}
-                  {{else}}
-                    {{> swagger/responseHeaderRow header=. name=@key}}
-                  {{/if}}
-                {{/each}}
-                </tbody>
-              </table>
-            </section>
-          </section>
         {{/if}}
       {{/each}}
     </div>
